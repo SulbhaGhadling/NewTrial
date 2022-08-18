@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;ClassMngService.java&apos; to &apos;ClassMgtSystem/src/com.service&apos;&#x0D;&#x0A;- Original project: &apos;ClassMgtSystem&apos;&#x0D;&#x0A;- Destination element: &apos;ClassMgtSystem/src/com.service&apos;&#x0D;&#x0A;- Original element: &apos;com.model.ClassMngService.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.service" element1="/src&lt;com.model{ClassMngService.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1657507672481" units="1" version="1.0"/>
+</session>

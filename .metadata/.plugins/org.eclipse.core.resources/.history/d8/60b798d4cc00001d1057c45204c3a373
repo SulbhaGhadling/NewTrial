@@ -1,0 +1,55 @@
+package com.serviceImpl;
+
+import com.service.ClassMngService;
+
+public class ClassMngServiceImpl implements ClassMngService{
+
+	@Override
+	public void addCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFaculty() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayFaculty() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addBatch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayBatch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addStudent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayStudent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

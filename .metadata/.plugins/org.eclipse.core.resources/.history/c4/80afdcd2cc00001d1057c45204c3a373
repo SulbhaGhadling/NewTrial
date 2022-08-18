@@ -1,0 +1,7 @@
+package com.serviceImpl;
+
+import com.service.ClassMngService;
+
+public class ClassMngServiceImpl implements ClassMngService{
+
+}

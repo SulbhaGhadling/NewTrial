@@ -1,0 +1,43 @@
+18-Aug-2022 12:53:27.364 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 12:59:37.807 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 12:59:37.815 [main] INFO  com.Service.StudentService - 
+Student 	sID: 121212	sName: Sulbha	sAddress: Pune
+18-Aug-2022 12:59:37.816 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:29:56.502 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:29:56.509 [main] INFO  com.Service.StudentService - 
+Student 	sID: 121212	sName: Sulbha	sAddress: Pune
+18-Aug-2022 13:29:56.530 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:30:47.825 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:30:47.833 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 13:30:47.834 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:31:52.815 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:31:52.822 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 13:31:52.823 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:32:29.062 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:32:29.068 [main] DEBUG com.Service.StudentService - Student is NULL.
+18-Aug-2022 13:32:29.069 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:33:55.919 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:33:55.929 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 13:33:55.929 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:36:39.736 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:36:39.744 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 13:36:39.745 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 13:37:24.635 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 13:37:24.643 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 13:37:24.644 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 14:54:17.780 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 14:54:17.810 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 14:54:17.812 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 14:54:41.632 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 14:54:41.642 [main] INFO  com.Service.StudentService - 
+Student 	sID: 0	sName: null	sAddress: null
+18-Aug-2022 14:54:41.643 [main] INFO  com.Controller.MainController - Program Executed Successfully.
+18-Aug-2022 14:54:59.212 [main] INFO  com.Controller.MainController - Hi, I am info logger.
+18-Aug-2022 14:54:59.220 [main] DEBUG com.Service.StudentService - Student is NULL.
+18-Aug-2022 14:54:59.221 [main] INFO  com.Controller.MainController - Program Executed Successfully.

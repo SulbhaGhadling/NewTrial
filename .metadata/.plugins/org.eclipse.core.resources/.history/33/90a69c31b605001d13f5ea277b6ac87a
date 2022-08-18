@@ -1,0 +1,399 @@
+package com.serviceImpl;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+import com.model.Batch;
+import com.model.Course;
+import com.model.Faculty;
+import com.model.Student;
+import com.service.ClassMngService;
+
+public class ClassMngServiceImpl implements ClassMngService {
+
+	Scanner sc = new Scanner(System.in);
+
+	@Override
+	public void addCourse() {
+		PreparedStatement ps = null;
+		Scanner sc;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/batchdb16", "root", "root");
+			String sql = "insert into course values(?, ?)";
+			ps = conn.prepareStatement(sql);
+
+			sc = new Scanner(System.in);
+			System.out.println("Enter Course ID: ");
+			int studID = getcid();
+			System.out.println("Enter Course Name: ");
+			String address = sc.next();
+
+			ps.setInt(1, studID);
+			ps.setString(2, address);
+			ps.executeUpdate();
+
+			System.out.println("Program Executed Successfully.");
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private int getcid() {
+		sc = new Scanner(System.in);
+		int courseid = 0;
+		try {
+			courseid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please Re-Enter Course ID as integer numbers only greater than 0.");
+			return getcid();
+		}
+		if (isvalidcID(courseid)) {
+			return courseid;
+		} else {
+			return getcid();
+		}
+	}
+
+	private boolean isvalidcID(int cid) {
+		boolean flag = false;
+		if (cid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	@Override
+	public void displayCourse() {
+		if (cList.isEmpty()) {
+			System.out.println("Sorry, No Courses to display, kindly add courses and then try");
+			return;
+		}
+		System.out.println("\nCourse ID" + "\t" + "Course Name");
+		for (Course c : cList) {
+			System.out.println(c);
+		}
+	}
+
+	@Override
+	public void addFaculty() {
+
+		if (cList.isEmpty()) {
+			System.out.println(
+					"As courses are not available to assign to faculty, kindly add courses and then try adding faculties");
+			return;
+		}
+
+		System.out.println("Enter number of Faculties you want to add: ");
+		int nf = 0;
+
+		sc = new Scanner(System.in);
+		try {
+			nf = new Integer(sc.nextInt());
+		} catch (InputMismatchException e) {
+			System.out.println("Please Enter integer numbers only greater than 0.");
+			addFaculty();
+		}
+
+		for (int i = 0; i < nf; i++) {
+			Faculty faculty = new Faculty();
+
+			System.out.println("Enter Faculty ID: ");
+			faculty.setfID(getfid());
+			System.out.println("Enter Faculty Name: ");
+			faculty.setfName(sc.next());
+
+			displayCourse();
+			System.out.println("Please enter Course ID from above data to assign to this faculty: ");
+			int f_cid = selectf_cid();
+
+			for (Course course : cList) {
+				if (course.getcID() == f_cid) {
+					faculty.setCourse(course);
+					break;
+				}
+			}
+
+			fList.add(faculty);
+		}
+	}
+
+	private int selectf_cid() {
+		sc = new Scanner(System.in);
+		int f_cid = 0;
+		try {
+			f_cid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please Enter Course ID only: ");
+			return selectf_cid();
+		}
+		if (isvalidf_cID(f_cid)) {
+			return f_cid;
+		} else {
+			return selectf_cid();
+		}
+	}
+
+	private boolean isvalidf_cID(int f_cid) {
+		boolean flag = false;
+		if (f_cid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	private int getfid() {
+		sc = new Scanner(System.in);
+		int facultyid = 0;
+		try {
+			facultyid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please ReEnter Faculty ID as integer numbers only greater than 0.");
+			return getfid();
+		}
+		if (isvalidcID(facultyid)) {
+			return facultyid;
+		} else {
+			return getfid();
+		}
+	}
+
+	private boolean isvalidfID(int fid) {
+		boolean flag = false;
+		if (fid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	@Override
+	public void displayFaculty() {
+
+		if (fList.isEmpty()) {
+			System.out.println("Sorry, No Faculties to display, kindly add faculties and then try");
+			return;
+		}
+
+		System.out.println("\nFaculty ID" + "\t" + "Faculty Name" + "\t\t" + "Course Assigned");
+		for (Faculty f : fList) {
+			System.out.println(f);
+		}
+	}
+
+	@Override
+	public void addBatch() {
+
+		if (fList.isEmpty()) {
+			System.out.println(
+					"As faculties are not available to assign to batch, kindly add faculties and then try adding batches");
+			return;
+		}
+
+		System.out.println("Enter number of batches you want to add: ");
+		int nb = 0;
+
+		sc = new Scanner(System.in);
+		try {
+			nb = new Integer(sc.nextInt());
+		} catch (InputMismatchException e) {
+			System.out.println("Please Enter integer numbers only greater than 0.");
+			addBatch();
+		}
+
+		for (int i = 0; i < nb; i++) {
+			Batch batch = new Batch();
+
+			System.out.println("Enter Batch ID: ");
+			batch.setbID(getbid());
+			System.out.println("Enter Batch Name: ");
+			batch.setbName(sc.next());
+
+			displayFaculty();
+			System.out.println("Please enter Faculty ID from above data to assign to this batch: ");
+			int b_fid = selectb_fid();
+
+			for (Faculty faculty : fList) {
+				if (faculty.getfID() == b_fid) {
+					batch.setFaculty(faculty);
+					break;
+				}
+			}
+
+			bList.add(batch);
+		}
+	}
+
+	private int selectb_fid() {
+		sc = new Scanner(System.in);
+		int b_fid = 0;
+		try {
+			b_fid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please Enter Faculty ID only: ");
+			return selectb_fid();
+		}
+		if (isvalidb_fID(b_fid)) {
+			return b_fid;
+		} else {
+			return selectb_fid();
+		}
+	}
+
+	private boolean isvalidb_fID(int b_fid) {
+		boolean flag = false;
+		if (b_fid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	private int getbid() {
+		sc = new Scanner(System.in);
+		int batchid = 0;
+		try {
+			batchid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please ReEnter Batch ID as integer numbers only greater than 0.");
+			return getbid();
+		}
+		if (isvalidbID(batchid)) {
+			return batchid;
+		} else {
+			return getbid();
+		}
+	}
+
+	private boolean isvalidbID(int bid) {
+		boolean flag = false;
+		if (bid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	@Override
+	public void displayBatch() {
+		if (bList.isEmpty()) {
+			System.out.println("Sorry, No batches to display, kindly add batches and then try");
+			return;
+		}
+
+		System.out
+				.println("\nBatch ID" + "\t" + "Batch Name" + "\t\t" + "Faculty Assigned" + "\t\t" + "Course Assigned");
+		for (Batch b : bList) {
+			System.out.println(b);
+		}
+	}
+
+	@Override
+	public void addStudent() {
+
+		if (bList.isEmpty()) {
+			System.out.println(
+					"As batches not available to assign to students, kindly add batches and then try adding students");
+			return;
+		}
+
+		System.out.println("Enter number of students you want to add: ");
+		int ns = 0;
+
+		sc = new Scanner(System.in);
+		try {
+			ns = new Integer(sc.nextInt());
+		} catch (InputMismatchException e) {
+			System.out.println("Please Enter integer numbers only greater than 0.");
+			addStudent();
+		}
+
+		for (int i = 0; i < ns; i++) {
+			Student student = new Student();
+
+			System.out.println("Enter Student ID: ");
+			student.setsID(getsid());
+			System.out.println("Enter Student Name: ");
+			student.setsName(sc.next());
+
+			displayBatch();
+			System.out.println("Please enter Batch ID from above data to assign to this student: ");
+			int s_bid = selects_bid();
+
+			for (Batch batch : bList) {
+				if (batch.getbID() == s_bid) {
+					student.setBatch(batch);
+					break;
+				}
+			}
+			sList.add(student);
+		}
+	}
+
+	private int selects_bid() {
+		sc = new Scanner(System.in);
+		int s_bid = 0;
+		try {
+			s_bid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please Enter Faculty ID only: ");
+			return selects_bid();
+		}
+		if (isvalids_bID(s_bid)) {
+			return s_bid;
+		} else {
+			return selects_bid();
+		}
+	}
+
+	private boolean isvalids_bID(int s_bid) {
+		boolean flag = false;
+		if (s_bid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	private int getsid() {
+		sc = new Scanner(System.in);
+		int studentid = 0;
+		try {
+			studentid = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Please ReEnter student ID as integer numbers only greater than 0.");
+			return getsid();
+		}
+		if (isvalidsID(studentid)) {
+			return studentid;
+		} else {
+			return getsid();
+		}
+	}
+
+	private boolean isvalidsID(int sid) {
+		boolean flag = false;
+		if (sid > 0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	@Override
+	public void displayStudent() {
+		if (sList.isEmpty()) {
+			System.out.println("Sorry, No students to display, kindly add students and then try");
+			return;
+		}
+
+		System.out.println("\nStudent ID" + "\t" + "Student Name" + "\t\t" + "Batch Assigned" + "\t\t"
+				+ "Faculty Assigned" + "\t\t" + "Course Assigned");
+		for (Student s : sList) {
+			System.out.println(s);
+		}
+	}
+
+}
